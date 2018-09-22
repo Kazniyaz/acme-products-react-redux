@@ -6,7 +6,6 @@ import axios from 'axios';
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
 const CREATE_PRODUCT = 'CREATE_PRODUCT';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
-const SHOW_TOP_RATE_PRODUCT = 'SHOW_TOP_RATED_PRODUCT';
 
 const _loadProducts = products => {
   return {
@@ -25,11 +24,6 @@ const _deleteProduct = product => {
   return {
     product,
     type: 'DELETE_PRODUCT',
-  };
-};
-const _topRatedProduct = () => {
-  return {
-    type: 'SHOW_TOP_RATED_PRODUCT',
   };
 };
 
@@ -58,12 +52,6 @@ const deleteProduct = product => {
   };
 };
 
-const showTopRatedProduct = () => {
-  return dispatch => {
-    return dispatch(_topRatedProduct());
-  };
-};
-
 const reducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
@@ -75,17 +63,6 @@ const reducer = (state = [], action) => {
     case DELETE_PRODUCT:
       state = state.filter(product => product.id !== action.product.id);
       break;
-    case SHOW_TOP_RATE_PRODUCT:
-      state = [
-        [...state].reduce(
-          (topProduct, currProduct) => {
-            if (topProduct.rating < currProduct.rating) return currProduct;
-            else return topProduct;
-          },
-          { rating: 0 }
-        ),
-      ];
-      break;
     default:
       break;
   }
@@ -95,4 +72,4 @@ const reducer = (state = [], action) => {
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 export default store;
-export { loadProducts, createProduct, deleteProduct, showTopRatedProduct };
+export { loadProducts, createProduct, deleteProduct };

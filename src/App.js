@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import Nav from './Nav';
 import ProductList from './ProductList';
 import Product from './Product';
-import { HashRouter as Router, Link, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 export default class App extends Component {
   componentDidMount() {

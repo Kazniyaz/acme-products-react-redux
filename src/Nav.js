@@ -1,15 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { showTopRatedProduct, loadProducts } from './store';
-import store from './store';
 import { Link } from 'react-router-dom';
 
-const Nav = ({
-  products,
-  numberOfProducts,
-  showTopRatedProduct,
-  loadProducts,
-}) => {
+const Nav = ({ products, numberOfProducts }) => {
   const topProd = products.reduce(
     (topProduct, currProduct) => {
       if (topProduct.rating < currProduct.rating) return currProduct;

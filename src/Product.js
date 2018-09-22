@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteProduct } from './store';
-import { runInDebugContext } from 'vm';
 
-const Product = ({ products, DeleteProduct }) => {
+const Product = ({ products, deleteProduct }) => {
   const product = products.reduce(
     (topProduct, currProduct) => {
       if (topProduct.rating < currProduct.rating) return currProduct;
@@ -16,7 +15,7 @@ const Product = ({ products, DeleteProduct }) => {
       <span>
         {product.name} {product.rating}
       </span>
-      <button type="submit" onClick={() => DeleteProduct(product)}>
+      <button type="submit" onClick={() => deleteProduct(product)}>
         X
       </button>
     </div>
@@ -31,7 +30,7 @@ const mapStateToProps = products => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    DeleteProduct: product => dispatch(deleteProduct(product)),
+    deleteProduct: product => dispatch(deleteProduct(product)),
   };
 };
 export default connect(
