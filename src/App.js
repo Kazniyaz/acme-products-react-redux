@@ -3,6 +3,8 @@ import store, { loadProducts } from './store';
 import { Provider } from 'react-redux';
 import Nav from './Nav';
 import ProductList from './ProductList';
+import Product from './Product';
+import { HashRouter as Router, Link, Route } from 'react-router-dom';
 
 export default class App extends Component {
   componentDidMount() {
@@ -11,11 +13,14 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <h1>ACME PRODUCTS:</h1>
-          <Nav />
-          <ProductList />
-        </div>
+        <Router>
+          <div>
+            <h1>ACME PRODUCTS:</h1>
+            <Route component={Nav} />
+            <Route path="/" exact component={ProductList} />
+            <Route path="/product" component={Product} />
+          </div>
+        </Router>
       </Provider>
     );
   }
