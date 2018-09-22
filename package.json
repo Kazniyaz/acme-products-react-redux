@@ -39,7 +39,7 @@
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "postinstall": "npm run webpack",
     "start:dev": "npm run webpack -- --watch --mode=development & DATABASE_URL=postgres://localhost/my_db nodemon server.js --ignore src/ --ignore dist",
-    "start": "npm run webpack -- --watch --mode=production & DATABASE_URL=postgres://localhost/my_db nodemon server.js --ignore src/ --ignore dist"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
